@@ -8,30 +8,25 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
+    private val viewModel: MainViewModel by lazy {
+        ViewModelProviders.of(this).get(MainViewModel::class.java)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        var viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
+        button1.setOnClickListener { viewModel.addvalue1() }
+        button2.setOnClickListener { viewModel.addValue2() }
+        button3.setOnClickListener { viewModel.reset() }
 
         viewModel.value1.observe(this, Observer {
-            textView1.setText(it!!.toString())
+            textView1.text = it!!.toString()
         })
 
         viewModel.value2.observe(this, Observer {
-            textView2.setText(it!!.toString())
+            textView2.text = it!!.toString()
         })
 
-        button1.setOnClickListener {
-            viewModel.addvalue1()
-        }
-
-        button2.setOnClickListener {
-            viewModel.addValue2()
-        }
-
-        button3.setOnClickListener {
-            viewModel.reset()
-        }
     }
 }

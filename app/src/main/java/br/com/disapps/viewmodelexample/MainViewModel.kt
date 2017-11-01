@@ -8,13 +8,9 @@ import android.arch.lifecycle.ViewModel
  **/
 class MainViewModel: ViewModel(){
 
-    val value1 = MutableLiveData<Int>()
-    val value2 = MutableLiveData<Int>()
+    val value1 = MutableLiveData<Int>().apply { value = 0 }
+    val value2 = MutableLiveData<Int>().apply { value = 0 }
 
-    init {
-        value1.value = 0
-        value2.value = 0
-    }
 
     fun addvalue1(){
         value1.value = value1.value!!+1
